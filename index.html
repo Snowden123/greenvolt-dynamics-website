@@ -3,902 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GreenVolt Dynamics — The Feedstock Layer for India's Bio-Energy Transition</title>
-<meta name="description" content="GreenVolt Dynamics reclaims degraded farmland in Uttar Pradesh, plants it with Super Napier grass, and supplies the biomass feedstock behind compressed biogas, gasification and biochar production.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2328603A'/><text x='50' y='70' font-size='58' font-family='Arial' font-weight='900' fill='%23ECEEE2' text-anchor='middle'>G</text></svg>">
+<title>GreenVolt Dynamics | The Feedstock Layer for India's Bio-Energy Transition</title>
+<meta name="description" content="GreenVolt Dynamics is a biomass aggregator supplying 20–25 tonnes of Napier per day across 7 districts of Uttar Pradesh, specialising in feedstock for compressed biogas (CBG).">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230F3D27'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='900' fill='%23C5E86C' text-anchor='middle'>G</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-
-/* ===================== TOKENS ===================== */
-:root{
-  --ink:        #12150F;
-  --ink-700:    #1B2017;
-  --ink-line:   rgba(236,238,226,0.16);
-  --paper:      #ECEEE2;
-  --paper-soft: rgba(18,21,15,0.66);
-  --paper-on-dark: #ECEEE2;
-  --green:      #28603A;
-  --green-deep: #1C4A2C;
-  --green-bright:#8FAE4A;
-  --ochre:      #A6601C;
-  --line:       rgba(18,21,15,0.16);
-  --ink-soft:   #4B5142;
-
-  --max: 1240px;
-  --pad: clamp(20px, 5vw, 64px);
-
-  --sp-1: 8px;
-  --sp-2: 16px;
-  --sp-3: 24px;
-  --sp-4: 40px;
-  --sp-5: 64px;
-  --sp-6: 96px;
-  --sp-7: clamp(80px, 12vw, 160px);
-
-  --display: "Big Shoulders Display", sans-serif;
-  --body: "Inter", sans-serif;
-  --mono: "IBM Plex Mono", monospace;
-}
-
-*,*::before,*::after{ box-sizing:border-box; border-radius:0; }
-html{ scroll-behavior:smooth; scroll-padding-top:76px; }
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--body);
-  font-size:16px;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-}
-
-h1,h2,h3{ margin:0; font-family:var(--display); font-weight:800; letter-spacing:0.01em; }
-p{ margin:0; }
-a{ color:inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
-button{ font-family:var(--mono); border:none; background:none; cursor:pointer; }
-
-:focus-visible{ outline:2px solid var(--green-bright); outline-offset:3px; }
-
-.wrap{ max-width:var(--max); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
-
-.eyebrow{
-  font-family:var(--mono);
-  font-size:12px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:var(--sp-2);
-  color:var(--green);
-}
-.eyebrow::before{ content:""; width:18px; height:1px; background:var(--green); display:inline-block; }
-.on-dark .eyebrow{ color:var(--green-bright); }
-.on-dark .eyebrow::before{ background:var(--green-bright); }
-
-.section{ position:relative; padding-top:var(--sp-7); padding-bottom:var(--sp-7); }
-.section.tight{ padding-top:var(--sp-6); padding-bottom:var(--sp-6); }
-
-/* corner crop-marks — recurring structural motif (survey / dossier reference) */
-.frame{ position:relative; }
-.frame::before,.frame::after{
-  content:""; position:absolute; width:14px; height:14px; pointer-events:none; opacity:0.55;
-}
-.frame::before{ top:0; left:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
-.frame::after{ bottom:0; right:0; border-bottom:1px solid var(--line); border-right:1px solid var(--line); }
-.on-dark .frame::before,.on-dark .frame::after{ border-color:var(--ink-line); }
-.contact .frame::before,.contact .frame::after{ border-color:var(--ink-line); }
-
-/* ===================== REVEAL UTILITIES ===================== */
-[data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
-[data-reveal].is-visible{ opacity:1; transform:translateY(0); }
-[data-reveal-delay="1"]{ transition-delay:.08s; }
-[data-reveal-delay="2"]{ transition-delay:.16s; }
-[data-reveal-delay="3"]{ transition-delay:.24s; }
-[data-reveal-delay="4"]{ transition-delay:.32s; }
-[data-reveal-delay="5"]{ transition-delay:.40s; }
-@media (prefers-reduced-motion: reduce){
-  [data-reveal]{ opacity:1; transform:none; transition:none; }
-}
-
-/* ===================== HEADER ===================== */
-.site-header{
-  position:fixed; top:0; left:0; right:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:18px var(--pad);
-  background:rgba(18,21,15,0);
-  transition:background .35s ease, border-color .35s ease;
-  border-bottom:1px solid transparent;
-}
-.site-header.scrolled{ background:rgba(18,21,15,0.92); border-bottom-color:var(--ink-line); backdrop-filter:blur(6px); }
-.brand{ display:flex; align-items:center; gap:10px; color:var(--paper); }
-.brand-mark{
-  width:28px; height:28px; background:var(--green); color:var(--paper);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--display); font-weight:800; font-size:14px; letter-spacing:0;
-  flex-shrink:0;
-}
-.brand-name{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; }
-.brand-name b{ font-weight:600; }
-.header-cta{
-  font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--paper); border-bottom:1px solid var(--green-bright); padding-bottom:3px;
-  transition:opacity .2s ease;
-}
-.header-cta:hover{ opacity:.7; }
-
-/* ===================== HERO ===================== */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  background:var(--ink);
-  color:var(--paper);
-  overflow:hidden;
-  padding-top:96px;
-}
-.hero-grid{
-  position:absolute; inset:0;
-  background-image:radial-gradient(rgba(236,238,226,.07) 1px, transparent 1.6px);
-  background-size:26px 26px;
-  opacity:.5;
-}
-.hero-contours{ position:absolute; inset:0; width:100%; height:100%; }
-.contour-path{
-  fill:none; stroke:var(--green-bright); stroke-width:1.1;
-  transform-origin:left center;
-  opacity:0;
-  animation:contourDraw 1.6s ease-out forwards;
-}
-.contour-path:nth-child(1){ animation-delay:.05s; stroke-opacity:.5; }
-.contour-path:nth-child(2){ animation-delay:.18s; }
-.contour-path:nth-child(3){ animation-delay:.30s; }
-.contour-path:nth-child(4){ animation-delay:.42s; }
-.contour-path:nth-child(5){ animation-delay:.54s; }
-.contour-path:nth-child(6){ animation-delay:.66s; }
-@keyframes contourDraw{
-  from{ opacity:0; transform:scaleX(0); }
-  to{ opacity:.32; transform:scaleX(1); }
-}
-@media (prefers-reduced-motion: reduce){
-  .contour-path{ animation:none; opacity:.28; transform:scaleX(1); }
-}
-
-.hero-inner{ position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:center; }
-.hero-eyebrow{
-  font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--green-bright); margin-bottom:var(--sp-3);
-  opacity:0; transform:translateY(10px);
-  animation:heroIn .7s ease-out forwards; animation-delay:.15s;
-}
-.hero h1{
-  font-size:clamp(46px, 9vw, 112px);
-  line-height:0.96;
-  color:var(--paper);
-  margin-bottom:var(--sp-4);
-}
-.hero h1 .line{
-  display:block; overflow:hidden;
-}
-.hero h1 .line span{
-  display:block; opacity:0; transform:translateY(100%);
-  animation:heroIn .8s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.hero h1 .line:nth-child(1) span{ animation-delay:.30s; }
-.hero h1 .line:nth-child(2) span{ animation-delay:.42s; color:var(--green-bright);}
-.hero h1 .line:nth-child(3) span{ animation-delay:.54s; }
-@keyframes heroIn{ to{ opacity:1; transform:translateY(0); } }
-@media (prefers-reduced-motion: reduce){
-  .hero-eyebrow,.hero h1 .line span{ animation:none; opacity:1; transform:none; }
-}
-
-.hero p.sub{
-  font-family:var(--body); font-size:clamp(16px,2vw,19px); color:var(--paper-on-dark);
-  opacity:.82; max-width:560px; margin-bottom:var(--sp-4); font-weight:400;
-}
-.hero-ctas{ display:flex; align-items:center; gap:var(--sp-4); flex-wrap:wrap; margin-bottom:var(--sp-6); }
-.btn{
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-  padding:15px 26px; border:1px solid currentColor; transition:background .2s ease, color .2s ease;
-}
-.btn-primary{ background:var(--green); color:var(--paper); border-color:var(--green); }
-.btn-primary:hover{ background:var(--green-bright); border-color:var(--green-bright); color:var(--ink); }
-.btn-ghost{ color:var(--paper); }
-.btn-ghost:hover{ color:var(--green-bright); border-color:var(--green-bright); }
-.btn svg{ width:14px; height:14px; }
-
-.hero-ticker{
-  position:relative; z-index:2;
-  border-top:1px solid var(--ink-line);
-  display:flex; flex-wrap:wrap; gap:0;
-}
-.hero-ticker .t-item{
-  font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--paper-on-dark);
-  padding:16px var(--pad) 16px 0; opacity:.75; display:flex; align-items:center; gap:10px;
-  border-right:1px solid var(--ink-line);
-}
-.hero-ticker .t-item:last-child{ border-right:none; }
-.hero-ticker .t-item b{ color:var(--green-bright); font-weight:600; opacity:1; }
-.hero-ticker .wrap{ display:flex; flex-wrap:wrap; padding-top:0; padding-bottom:0; }
-
-/* ===================== SECTION HEADERS ===================== */
-.s-head{ max-width:680px; margin-bottom:var(--sp-5); }
-.s-head h2{ font-size:clamp(30px,4.4vw,52px); line-height:1.04; margin-bottom:var(--sp-3); }
-.s-head .s-sub{ font-family:var(--body); font-size:17px; color:var(--ink-soft); max-width:560px; }
-
-/* ===================== WHAT WE DO ===================== */
-.land-strip{ margin:var(--sp-5) 0 var(--sp-6); }
-.land-strip svg{ width:100%; height:auto; display:block; }
-.land-strip .ground{ stroke:var(--line); stroke-width:1; }
-.land-strip .divider{ stroke:var(--line); stroke-width:1; stroke-dasharray:4 6; }
-.land-strip .crack{ fill:none; stroke:var(--ochre); stroke-width:1.4; opacity:.75; stroke-linecap:round; }
-.land-strip .dot{ fill:var(--ochre); opacity:.4; }
-.land-strip .blade{ fill:none; stroke:var(--green-bright); stroke-width:1.7; stroke-linecap:round; }
-.land-strip .root{ fill:none; stroke:var(--green); stroke-width:1.2; opacity:.55; stroke-linecap:round; }
-.land-caption{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:12px; }
-.land-caption .after{ color:var(--green); }
-
-.weave{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:var(--sp-6); align-items:start; }
-.weave-copy p{ font-size:17px; color:var(--ink-soft); margin-bottom:var(--sp-3); max-width:520px; }
-.weave-copy p:last-child{ margin-bottom:0; }
-
-.flow{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
-.flow-step{
-  display:grid; grid-template-columns:48px 1fr; gap:18px;
-  padding:var(--sp-3) 0; border-bottom:1px solid var(--line);
-  align-items:start;
-}
-.flow-step .num{ font-family:var(--mono); font-size:13px; color:var(--green); padding-top:2px; }
-.flow-step h3{ font-family:var(--body); font-weight:700; text-transform:none; font-size:15px; letter-spacing:.02em; margin-bottom:6px; }
-.flow-step p{ font-size:14.5px; color:var(--ink-soft); }
-
-/* ===================== OFFERINGS / BENTO ===================== */
-.bento{
-  display:grid;
-  grid-template-columns: 1.3fr 0.85fr 0.85fr;
-  grid-template-rows: minmax(170px,auto) minmax(170px,auto) minmax(170px,auto);
-  grid-template-areas:
-    "lead lead c2"
-    "lead lead c3"
-    "c4   c5   c6";
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
-}
-.b-card{
-  background:var(--paper);
-  padding:var(--sp-4);
-  display:flex; flex-direction:column; gap:var(--sp-3);
-  transition:background .25s ease;
-  position:relative;
-}
-.b-card:nth-child(1){ grid-area:lead; }
-.b-card:nth-child(2){ grid-area:c2; }
-.b-card:nth-child(3){ grid-area:c3; }
-.b-card:nth-child(4){ grid-area:c4; }
-.b-card:nth-child(5){ grid-area:c5; }
-.b-card:nth-child(6){ grid-area:c6; }
-.b-card:hover{ background:#E4E7D8; }
-.b-card:hover .b-icon svg{ stroke:var(--green); }
-.b-card.lead{ background:var(--ink); color:var(--paper); }
-.b-card.lead:hover{ background:#1F2418; }
-.b-card.lead .b-icon svg{ stroke:var(--green-bright); }
-.b-card.lead .b-title{ color:var(--paper); font-size:26px; }
-.b-card.lead .b-desc{ color:var(--paper-on-dark); opacity:.82; font-size:15.5px; max-width:340px; }
-.b-icon{ width:40px; height:40px; }
-.b-icon svg{ width:100%; height:100%; stroke:var(--green); fill:none; stroke-width:1.4; transition:stroke .25s ease; }
-.b-icon svg path,.c-row svg path{ stroke-linecap:round; stroke-linejoin:round; }
-.b-title{ font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:0; line-height:1.1; }
-.b-desc{ font-family:var(--body); font-size:14.5px; color:var(--ink-soft); line-height:1.5; max-width:300px; }
-.b-card .b-tag{ margin-top:auto; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green); }
-.b-card.lead .b-tag{ color:var(--green-bright); }
-
-@media (max-width:880px){
-  .bento{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-    grid-template-areas:none;
-  }
-  .b-card:nth-child(1),.b-card:nth-child(2),.b-card:nth-child(3),
-  .b-card:nth-child(4),.b-card:nth-child(5),.b-card:nth-child(6){ grid-area:auto; }
-  .b-card{ min-height:200px; }
-  .b-card.lead{ min-height:260px; }
-}
-
-/* ===================== PROOF / STATS + CHART ===================== */
-.proof-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-6); align-items:start; }
-.proof-copy p{ font-size:17px; color:var(--ink-soft); max-width:480px; margin-bottom:var(--sp-4); }
-.stat-row{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-.stat{ background:var(--paper); padding:var(--sp-3) var(--sp-3); }
-.stat .num{ font-family:var(--display); font-size:clamp(30px,4vw,42px); font-weight:800; color:var(--green); display:flex; align-items:baseline; gap:4px; }
-.stat .num .unit{ font-family:var(--mono); font-size:14px; color:var(--ink-soft); font-weight:500; text-transform:uppercase; }
-.stat .label{ font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:6px; }
-
-.panel{
-  background:var(--ink); color:var(--paper); padding:var(--sp-4);
-  border:1px solid var(--ink-line);
-}
-.panel-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--sp-4); border-bottom:1px solid var(--ink-line); padding-bottom:var(--sp-2); }
-.panel-head .p-title{ font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--green-bright); }
-.panel-head .p-meta{ font-family:var(--mono); font-size:11px; color:var(--paper-on-dark); opacity:.5; }
-
-.chart{ margin-bottom:var(--sp-4); }
-.chart:last-child{ margin-bottom:0; }
-.chart-label{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:11.5px; color:var(--paper-on-dark); opacity:.7; margin-bottom:10px; text-transform:uppercase; letter-spacing:.04em; }
-.chart-track{ position:relative; height:34px; border:1px solid var(--ink-line); background:rgba(236,238,226,0.04); }
-.chart-grid{ position:absolute; inset:0; display:flex; }
-.chart-grid span{ flex:1; border-right:1px solid var(--ink-line); }
-.chart-grid span:last-child{ border-right:none; }
-.chart-bar{
-  position:absolute; top:0; left:0; bottom:0; width:0;
-  background:var(--green-deep); border-right:2px solid var(--green-bright);
-  transition:width 1.4s cubic-bezier(.2,.7,.2,1);
-}
-.chart.is-live .chart-bar{ width:var(--target); }
-.chart-bar.band{ left:var(--start); border-right:2px solid var(--green-bright); border-left:2px solid var(--green-bright); background:var(--green-deep); }
-.chart.is-live .chart-bar.band{ width:var(--target); }
-.chart-ticks{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--paper-on-dark); opacity:.45; margin-top:6px; }
-.chart-readout{ font-family:var(--mono); font-size:11px; color:var(--paper-on-dark); opacity:.55; margin-top:8px; }
-
-@media (max-width:880px){
-  .weave{ grid-template-columns:1fr; gap:var(--sp-5); }
-  .proof-grid{ grid-template-columns:1fr; gap:var(--sp-5); }
-}
-
-/* ===================== FOUNDERS ===================== */
-.founders{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-.f-card{ background:var(--paper); padding:var(--sp-5) var(--sp-4); }
-.f-photo{
-  width:140px; height:140px; position:relative; overflow:hidden;
-  margin-bottom:var(--sp-3); display:flex; align-items:center; justify-content:center;
-}
-.f-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.f-photo-fallback{ position:relative; z-index:0; font-family:var(--display); font-weight:800; font-size:42px; }
-.f-photo.gr{ background:var(--green); }
-.f-photo.gr .f-photo-fallback{ color:var(--paper); }
-.f-photo.ik{ background:var(--ink); }
-.f-photo.ik .f-photo-fallback{ color:var(--green-bright); }
-.f-name{ font-family:var(--display); font-size:24px; font-weight:700; text-transform:none; margin-bottom:2px; }
-.f-role{ font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--green); margin-bottom:var(--sp-3); }
-.f-bio{ font-family:var(--body); font-size:15.5px; color:var(--ink-soft); max-width:420px; }
-@media (max-width:780px){ .founders{ grid-template-columns:1fr; } }
-
-/* ===================== WHY SUPER NAPIER (EDUCATIVE) ===================== */
-.napier-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:var(--sp-6); align-items:start; }
-.napier-copy p{ font-size:17px; color:var(--ink-soft); margin-bottom:var(--sp-3); max-width:520px; }
-.fact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:var(--sp-4); }
-.fact{ background:var(--paper); padding:var(--sp-3); }
-.fact-num{ font-family:var(--mono); font-size:12px; color:var(--green); }
-.fact h3{ font-family:var(--body); font-weight:700; font-size:14.5px; margin:6px 0; }
-.fact p{ font-size:13.5px; color:var(--ink-soft); }
-
-.napier-visual{ background:var(--paper); border:1px solid var(--line); padding:var(--sp-4); display:flex; flex-direction:column; align-items:center; gap:var(--sp-3); }
-.napier-visual svg{ width:100%; max-width:320px; height:auto; }
-.napier-visual .loop-track{ fill:none; stroke:var(--line); stroke-width:1.5; stroke-dasharray:3 7; }
-.napier-visual .chevron path{ fill:none; stroke:var(--green); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.napier-visual .node-a{ fill:var(--green); }
-.napier-visual .node-b{ fill:var(--ink); }
-.napier-visual .node-label{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; fill:var(--ink-soft); }
-.napier-visual .visual-caption{ font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); text-align:center; }
-
-@media (max-width:880px){ .napier-grid{ grid-template-columns:1fr; gap:var(--sp-5); } }
-@media (max-width:480px){ .fact-grid{ grid-template-columns:1fr; } }
-
-/* ===================== SUSTAINABILITY ===================== */
-.sustain-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-6); align-items:start; }
-.pillars{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-.pillar{ background:var(--paper); padding:var(--sp-3); }
-.pillar h3{ font-family:var(--body); font-weight:700; font-size:15px; margin-bottom:8px; }
-.pillar p{ font-size:13.5px; color:var(--ink-soft); }
-
-.loop-diagram{ width:100%; height:auto; margin:var(--sp-2) 0 var(--sp-3); }
-.loop-diagram .loop-track{ stroke:var(--ink-line); stroke-width:1; }
-.loop-diagram .return-arrow{ fill:none; stroke:var(--green-bright); stroke-width:1.4; stroke-dasharray:3 5; }
-.loop-diagram .chevron path{ fill:none; stroke:var(--green-bright); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.loop-diagram .node-a{ fill:var(--green); }
-.loop-diagram .node-b{ fill:var(--green-bright); }
-.loop-diagram .node-label{ font-family:var(--mono); font-size:10px; letter-spacing:.03em; text-transform:uppercase; fill:var(--paper-on-dark); opacity:.8; }
-.loop-diagram .loop-caption{ font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; text-transform:uppercase; fill:var(--green-bright); opacity:.9; }
-
-@media (max-width:880px){ .sustain-grid{ grid-template-columns:1fr; gap:var(--sp-5); } }
-@media (max-width:560px){ .pillars{ grid-template-columns:1fr; } }
-
-/* ===================== CONTACT / FOOTER ===================== */
-.contact{ background:var(--ink); color:var(--paper); }
-.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-6); }
-.contact h2{ color:var(--paper); }
-.contact .eyebrow{ color:var(--green-bright); }
-.contact .eyebrow::before{ background:var(--green-bright); }
-.contact .s-sub{ color:var(--paper-on-dark); opacity:.78; }
-.c-list{ display:flex; flex-direction:column; border-top:1px solid var(--ink-line); }
-.c-row{ display:grid; grid-template-columns:28px 1fr; gap:14px; padding:var(--sp-3) 0; border-bottom:1px solid var(--ink-line); }
-.c-row svg{ width:20px; height:20px; stroke:var(--green-bright); fill:none; stroke-width:1.4; margin-top:2px; }
-.c-row .c-label{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--paper-on-dark); opacity:.5; margin-bottom:4px; }
-.c-row .c-value{ font-family:var(--body); font-size:15.5px; }
-.c-row a:hover{ color:var(--green-bright); }
-.foot-bar{
-  margin-top:var(--sp-6); padding-top:var(--sp-3); border-top:1px solid var(--ink-line);
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-  font-family:var(--mono); font-size:11.5px; color:var(--paper-on-dark); opacity:.5;
-}
-@media (max-width:780px){ .contact-grid{ grid-template-columns:1fr; } }
-
-/* ===================== RESPONSIVE TYPE / SECTION SPACING ===================== */
-@media (max-width:600px){
-  .hero-ticker .wrap{ flex-direction:column; }
-  .hero-ticker .t-item{ border-right:none; border-bottom:1px solid var(--ink-line); width:100%; padding:14px 0; }
-  .stat-row{ grid-template-columns:1fr 1fr; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="site-header" id="siteHeader">
-  <a href="#top" class="brand">
-    <span class="brand-mark">GVD</span>
-    <span class="brand-name"><b>GreenVolt</b> Dynamics</span>
-  </a>
-  <a href="#contact" class="header-cta">Get in touch</a>
+  <a href="#top" class="brand"><span class="brand-mark">GV</span><span class="brand-name"><b>GreenVolt</b> Dynamics</span></a>
+  <nav class="pill-nav" id="pillNav" aria-label="Primary">
+    <a href="#top" class="active">Home</a>
+    <a href="#portfolio">Biomass</a>
+    <a href="#supply">Supply</a>
+    <a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="hdr-right"><button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="pillNav"><span></span><span></span><span></span></button>
+    
+    <a href="tel:+919980591862" class="hdr-link">+91 99805 91862</a>
+    <a href="order.html" class="hdr-cta">Place an order</a>
+  </div>
 </header>
 
 <main id="top">
 
-  <!-- ===================== HERO ===================== -->
   <section class="hero" id="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <svg class="hero-contours" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true">
-      <path class="contour-path" d="M0,560 C 220,520 380,610 620,560 C 860,510 1040,600 1440,540"/>
-      <path class="contour-path" d="M0,610 C 260,580 420,660 680,615 C 920,575 1120,650 1440,600"/>
-      <path class="contour-path" d="M0,660 C 240,700 460,630 700,680 C 960,730 1160,650 1440,690"/>
-      <path class="contour-path" d="M0,300 C 200,260 360,330 560,290 C 800,245 1000,310 1440,270"/>
-      <path class="contour-path" d="M0,180 C 240,150 420,210 660,170 C 900,135 1100,190 1440,150"/>
-      <path class="contour-path" d="M0,730 C 260,760 480,710 740,745 C 1000,780 1180,720 1440,755"/>
-    </svg>
+    <div class="guides" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <svg class="spark" style="left:12%;top:24%" viewBox="0 0 24 24" aria-hidden="true" data-parallax="0.25"><path fill="currentColor" d="M12 0c.8 6.4 5.6 11.2 12 12-6.4.8-11.2 5.6-12 12-.8-6.4-5.6-11.2-12-12C6.4 11.2 11.2 6.4 12 0Z"/></svg>
+    <svg class="spark" style="right:14%;top:20%;width:16px;height:16px" viewBox="0 0 24 24" aria-hidden="true" data-parallax="0.4"><path fill="currentColor" d="M12 0c.8 6.4 5.6 11.2 12 12-6.4.8-11.2 5.6-12 12-.8-6.4-5.6-11.2-12-12C6.4 11.2 11.2 6.4 12 0Z"/></svg>
+    <svg class="spark" style="right:22%;top:46%;width:26px;height:26px" viewBox="0 0 24 24" aria-hidden="true" data-parallax="0.15"><path fill="currentColor" d="M12 0c.8 6.4 5.6 11.2 12 12-6.4.8-11.2 5.6-12 12-.8-6.4-5.6-11.2-12-12C6.4 11.2 11.2 6.4 12 0Z"/></svg>
+    <svg class="spark" style="left:26%;top:50%;width:14px;height:14px" viewBox="0 0 24 24" aria-hidden="true" data-parallax="0.35"><path fill="currentColor" d="M12 0c.8 6.4 5.6 11.2 12 12-6.4.8-11.2 5.6-12 12-.8-6.4-5.6-11.2-12-12C6.4 11.2 11.2 6.4 12 0Z"/></svg>
 
-    <div class="wrap hero-inner">
-      <p class="hero-eyebrow">GreenVolt Dynamics Pvt. Ltd. — Est. 2024</p>
-      <h1>
-        <span class="line"><span>The Feedstock Layer</span></span>
-        <span class="line"><span>For India's</span></span>
-        <span class="line"><span>Bio-Energy Transition</span></span>
-      </h1>
-      <p class="sub">We reclaim degraded farmland in Uttar Pradesh, plant it with Super Napier grass, and turn the harvest into a dependable biomass supply for compressed biogas, gasification and biochar production.</p>
+    <div class="hero-copy">
+      <p class="hero-badge">Biomass aggregators for India's CBG industry</p>
+      <h1 id="heroTitle">The feedstock layer for India's <em>bio-energy</em> transition.</h1>
+      <p class="sub">We reclaim degraded farmland in Uttar Pradesh and aggregate the biomass behind compressed biogas: 20 to 25 tonnes of Napier every day, across seven districts.</p>
       <div class="hero-ctas">
-        <a href="#what-we-do" class="btn btn-primary">See the supply chain
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <a href="order.html" class="btn btn-primary">Place an order <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#portfolio" class="btn btn-ghost">Explore biomass</a>
       </div>
     </div>
 
-    <div class="hero-ticker">
-      <div class="wrap">
-        <span class="t-item">Patiyali, Kasganj District, UP</span>
-        <span class="t-item"><b>~100 acres</b>&nbsp;under cultivation</span>
-        <span class="t-item"><b>8–10 tonnes</b>&nbsp;biomass / day</span>
+    <div class="hero-scene">
+      <div class="scene-bg" data-parallax-bg="0.18"></div>
+      <p class="scene-cap">Reclaimed land, Patiyali, Kasganj</p>
+      <a href="#supply" class="scene-link">See where we supply <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="GreenVolt at a glance">
+    <div class="wrap">
+      <div class="stat" data-reveal><div class="num">20–25<small>tonnes</small></div><div class="label">Napier supplied every day</div></div>
+      <div class="stat" data-reveal data-reveal-delay="1"><div class="num"><span data-count-to="7">0</span></div><div class="label">Districts across Uttar Pradesh</div></div>
+      <div class="stat" data-reveal data-reveal-delay="2"><div class="num">~<span data-count-to="100">0</span><small>acres</small></div><div class="label">Under Super Napier cultivation</div></div>
+      <div class="stat" data-reveal data-reveal-delay="3"><div class="num"><span data-count-to="10">0</span></div><div class="label">Biomass types in our portfolio</div></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Super Napier Grass</span><span>Paddy Straw &amp; Rice Husk</span><span>Wheat Straw</span><span>Mustard Straw</span><span>Corn Residue</span><span>Sugarcane Bagasse &amp; Press Mud</span><span>Cotton Stalks</span><span>Soybean Straw</span><span>Groundnut Shells</span><span>Castor Seed Stalks</span><span>Super Napier Grass</span><span>Paddy Straw &amp; Rice Husk</span><span>Wheat Straw</span><span>Mustard Straw</span><span>Corn Residue</span><span>Sugarcane Bagasse &amp; Press Mud</span><span>Cotton Stalks</span><span>Soybean Straw</span><span>Groundnut Shells</span><span>Castor Seed Stalks</span></div></div>
+
+  <section class="section statement">
+    <div class="wrap">
+      <div data-reveal>
+        <div class="st-card">
+          <img src="images/scenes/harvest-logistics.jpg" alt="Workers harvesting Super Napier grass at sunrise" loading="lazy" onerror="this.style.display='none'">
+          <span class="year">Est. 2024 · Patiyali, Kasganj</span>
+          <div class="tabs"><span>Aggregation</span><span>Cultivation</span><span>CBG feedstock</span></div>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="1">
+        <h2>Most bio-energy projects discover their feedstock problem after the plant is built. <span>GreenVolt solves it first, on land that was never feeding anyone.</span></h2>
+        <p class="more">Since 2025 we have been reclaiming alkaline, low-fertility land around Patiyali and replanting it with Super Napier, a high-yield perennial grown for biomass, not for the dinner plate. Every tonne adds to energy feedstock supply without pulling land out of food production.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WHAT WE DO ===================== -->
   <section class="section" id="what-we-do">
-    <div class="wrap frame">
-      <div class="s-head" data-reveal>
-        <p class="eyebrow">What We Build</p>
-        <h2>We Turn Dead Land Into A Fuel Supply</h2>
-      </div>
-
-      <div class="land-strip" data-reveal data-reveal-delay="1">
-        <svg viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-          <line class="ground" x1="0" y1="90" x2="1200" y2="90"/>
-          <line class="divider" x1="600" y1="14" x2="600" y2="150"/>
-
-          <path class="crack" d="M50,90 L60,65 L48,42"/>
-          <path class="crack" d="M150,90 L165,68 L150,50 L168,30"/>
-          <path class="crack" d="M260,90 L248,60 L266,38"/>
-          <path class="crack" d="M380,90 L395,70 L378,48 L398,28"/>
-          <path class="crack" d="M500,90 L488,62 L505,40"/>
-          <circle class="dot" cx="95" cy="102" r="2"/>
-          <circle class="dot" cx="205" cy="106" r="2"/>
-          <circle class="dot" cx="320" cy="99" r="2.4"/>
-          <circle class="dot" cx="440" cy="104" r="2"/>
-          <circle class="dot" cx="560" cy="97" r="2.2"/>
-          <circle class="dot" cx="30" cy="98" r="1.8"/>
-
-          <path class="blade" d="M650,90 C 642,62 660,40 652,16"/>
-          <path class="blade" d="M705,90 C 715,58 698,38 708,14"/>
-          <path class="blade" d="M760,90 C 750,60 768,36 758,12"/>
-          <path class="blade" d="M825,90 C 835,62 815,40 828,16"/>
-          <path class="blade" d="M890,90 C 880,58 900,38 888,14"/>
-          <path class="blade" d="M955,90 C 965,60 945,36 958,12"/>
-          <path class="blade" d="M1020,90 C 1010,62 1030,40 1018,16"/>
-          <path class="blade" d="M1085,90 C 1095,58 1075,38 1088,14"/>
-          <path class="blade" d="M1150,90 C 1140,60 1158,36 1148,12"/>
-
-          <path class="root" d="M650,90 C 642,108 656,122 648,142"/>
-          <path class="root" d="M705,90 C 712,106 700,118 706,138"/>
-          <path class="root" d="M760,90 C 752,108 766,120 756,140"/>
-          <path class="root" d="M825,90 C 832,106 820,118 826,138"/>
-          <path class="root" d="M890,90 C 882,108 896,120 886,140"/>
-          <path class="root" d="M955,90 C 962,106 950,118 956,138"/>
-          <path class="root" d="M1020,90 C 1012,108 1026,120 1016,140"/>
-          <path class="root" d="M1085,90 C 1092,106 1080,118 1086,138"/>
-          <path class="root" d="M1150,90 C 1142,108 1156,120 1146,140"/>
-        </svg>
-        <div class="land-caption">
-          <span>Before — Degraded, High-Alkalinity Land</span>
-          <span class="after">After — Reclaimed, Under Super Napier</span>
+    <div class="wrap">
+      <div class="split">
+        <div class="photo reveal-img" data-reveal-img>
+          <img src="images/scenes/reclaimed-land.jpg" alt="Degraded alkaline land transitioning into rows of Super Napier grass" loading="lazy" onerror="this.style.display='none'" data-parallax-img="0.1">
+          <span class="tag">Degraded land to Super Napier</span>
         </div>
-      </div>
-
-      <div class="weave">
-        <div class="weave-copy" data-reveal>
-          <p>Most bio-energy ventures discover their feedstock problem after the plant is built. GreenVolt Dynamics solves it first. Since 2025, we have been reclaiming alkaline, low-fertility land around Patiyali in Kasganj district and replanting it with Super Napier grass — a high-yield perennial grown for biomass, not for the dinner plate.</p>
-          <p>Because we work reclaimed and non-arable land exclusively, every tonne we deliver adds to the energy feedstock supply without pulling land out of food production.</p>
-        </div>
-
-        <div class="flow" data-reveal data-reveal-delay="2">
-          <div class="flow-step">
-            <span class="num">01</span>
-            <div><h3>Reclaim</h3><p>Degraded, high-alkalinity land brought back into productive use.</p></div>
+        <div>
+          <div class="s-head" data-reveal style="margin-bottom:var(--sp-4)">
+            <p class="eyebrow">What we build</p>
+            <h2>We turn dead land into a fuel supply</h2>
           </div>
-          <div class="flow-step">
-            <span class="num">02</span>
-            <div><h3>Cultivate</h3><p>Roughly 100 acres of Super Napier under continuous, multi-year cultivation.</p></div>
-          </div>
-          <div class="flow-step">
-            <span class="num">03</span>
-            <div><h3>Harvest &amp; Move</h3><p>Mechanized cutting cycles and daily logistics, already running at 8–10 tonnes a day.</p></div>
-          </div>
-          <div class="flow-step">
-            <span class="num">04</span>
-            <div><h3>Convert</h3><p>Feedstock routed into CBG, gasification and biochar pathways.</p></div>
+          <div class="steps">
+            <div class="step" data-reveal><span class="n">01</span><div><h3>Reclaim</h3><p>Degraded, high-alkalinity land brought back into productive use.</p></div></div>
+            <div class="step" data-reveal data-reveal-delay="1"><span class="n">02</span><div><h3>Cultivate</h3><p>Roughly 100 acres of Super Napier under continuous, multi-year cultivation.</p></div></div>
+            <div class="step" data-reveal data-reveal-delay="2"><span class="n">03</span><div><h3>Harvest &amp; move</h3><p>Mechanized cutting cycles and daily logistics, already running at 20–25 tonnes of Napier a day.</p></div></div>
+            <div class="step" data-reveal data-reveal-delay="3"><span class="n">04</span><div><h3>Convert</h3><p>Feedstock routed into CBG, gasification and biochar pathways.</p></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== OFFERINGS / BENTO ===================== -->
-  <section class="section tight" id="offerings" style="background:#E4E7D8;">
-    <div class="wrap frame">
+  <section class="section tight" id="portfolio" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="s-head center" data-reveal>
+        <p class="eyebrow">Biomass portfolio</p>
+        <h2>Biomass aggregators, specialising in CBG feedstock</h2>
+        <p class="s-sub">We are biomass aggregators and specialize in the biomass required for CBG. These are the feedstocks we source and supply.</p>
+      </div>
+      <div class="bio-grid">
+<figure class="bio-card" data-reveal data-tilt>
+          <span class="bio-num">01</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Super Napier Grass</span>
+            <img src="images/biomass/01-super-napier-grass.jpg" alt="Super Napier Grass" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Super Napier Grass</span>
+            <a class="bio-order" href="order.html?biomass=super-napier-grass">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="1">
+          <span class="bio-num">02</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Paddy Straw &amp; Rice Husk</span>
+            <img src="images/biomass/02-paddy-straw-rice-husk.jpg" alt="Paddy Straw & Rice Husk" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Paddy Straw &amp; Rice Husk</span>
+            <a class="bio-order" href="order.html?biomass=paddy-straw-rice-husk">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="2">
+          <span class="bio-num">03</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Wheat Straw</span>
+            <img src="images/biomass/03-wheat-straw.jpg" alt="Wheat Straw" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Wheat Straw</span>
+            <a class="bio-order" href="order.html?biomass=wheat-straw">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="3">
+          <span class="bio-num">04</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Mustard Straw / Stalks</span>
+            <img src="images/biomass/04-mustard-straw.jpg" alt="Mustard Straw / Stalks (सरसों की तूड़ी)" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Mustard Straw / Stalks<small>सरसों की तूड़ी</small></span>
+            <a class="bio-order" href="order.html?biomass=mustard-straw">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt>
+          <span class="bio-num">05</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Corn Residue</span>
+            <img src="images/biomass/05-corn-residue.jpg" alt="Corn Residue (Corn Cobs, Husks, and Stover)" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Corn Residue<small>Corn Cobs, Husks, and Stover</small></span>
+            <a class="bio-order" href="order.html?biomass=corn-residue">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="1">
+          <span class="bio-num">06</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Sugarcane Bagasse &amp; Press Mud</span>
+            <img src="images/biomass/06-sugarcane-bagasse-press-mud.jpg" alt="Sugarcane Bagasse & Press Mud" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Sugarcane Bagasse &amp; Press Mud</span>
+            <a class="bio-order" href="order.html?biomass=sugarcane-bagasse-press-mud">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="2">
+          <span class="bio-num">07</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Cotton Stalks</span>
+            <img src="images/biomass/07-cotton-stalks.jpg" alt="Cotton Stalks" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Cotton Stalks</span>
+            <a class="bio-order" href="order.html?biomass=cotton-stalks">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="3">
+          <span class="bio-num">08</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Soybean Straw</span>
+            <img src="images/biomass/08-soybean-straw.jpg" alt="Soybean Straw" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Soybean Straw</span>
+            <a class="bio-order" href="order.html?biomass=soybean-straw">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt>
+          <span class="bio-num">09</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Groundnut Shells</span>
+            <img src="images/biomass/09-groundnut-shells.jpg" alt="Groundnut Shells" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Groundnut Shells</span>
+            <a class="bio-order" href="order.html?biomass=groundnut-shells">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+        <figure class="bio-card" data-reveal data-tilt data-reveal-delay="1">
+          <span class="bio-num">10</span>
+          <div class="bio-img">
+            <span class="bio-fallback" aria-hidden="true">Castor Seed Stalks</span>
+            <img src="images/biomass/10-castor-seed-stalks.jpg" alt="Castor Seed Stalks" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <figcaption>
+            
+            <span class="bio-name">Castor Seed Stalks</span>
+            <a class="bio-order" href="order.html?biomass=castor-seed-stalks">Order this &rarr;</a>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="portfolio-cta" data-reveal>
+        <a href="order.html" class="btn btn-dark">Place an order <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p>Select the biomass you need and send us your requirement online.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="supply">
+    <div class="wrap">
       <div class="s-head" data-reveal>
-        <p class="eyebrow">The Feedstock Engine</p>
-        <h2>One Crop. Five Energy Pathways.</h2>
+        <p class="eyebrow">Service area</p>
+        <h2>Daily supply across seven districts</h2>
+      </div>
+      <div class="area" data-reveal>
+        <div class="area-bg" data-parallax-bg="0.12"></div>
+        <div class="area-card">
+          <h3>Now supplying across 7 districts</h3>
+          <p>From our base in Kasganj, GreenVolt Dynamics delivers 20 to 25 tonnes of Napier per day across seven districts of western Uttar Pradesh.</p>
+          <ul class="district-list"><li>Kasganj</li><li>Etah</li><li>Budaun</li><li>Farrukhabad</li><li>Hathras</li><li>Aligarh</li><li>Agra</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="offerings" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="s-head" data-reveal>
+        <p class="eyebrow">The feedstock engine</p>
+        <h2>One crop. Five energy pathways.</h2>
         <p class="s-sub">Super Napier is the input. This is where the harvest goes.</p>
       </div>
+      <div class="path-grid">
+        <div class="path lead" data-reveal><div class="ico"><svg viewBox="0 0 48 48"><path d="M24 6c4 6-4 9-4 15a8 8 0 1 0 16 0c0-4-3-6-3-10 1 4-2 5-2 8a4 4 0 1 1-8 0c0-5 5-7 1-13Z"/></svg></div><h3>Compressed Biogas (CBG) production</h3><p>Multi-year supply frameworks built around the high-methane yield of dedicated Super Napier acreage, sized for commercial-scale CBG facilities.</p><span class="badge">Primary pathway</span></div>
+        <div class="path" data-reveal data-reveal-delay="1"><div class="ico"><svg viewBox="0 0 48 48"><path d="M10 10h28l-9 16v12h-10V26L10 10Z"/></svg></div><h3>Biomass aggregation</h3><p>Centralized collection and grading from our own plantations and partner land, structured for long-term off-take.</p></div>
+        <div class="path" data-reveal><div class="ico"><svg viewBox="0 0 48 48"><path d="M16 40V18h16v22M20 18v-8h8v8M24 6v4M24 22h0M24 28h0M24 34h0"/></svg></div><h3>Biomass gasification</h3><p>Feedstock supply lines for gasification projects that convert biomass into syngas and power.</p></div>
+        <div class="path" data-reveal data-reveal-delay="1"><div class="ico"><svg viewBox="0 0 48 48"><circle cx="16" cy="18" r="3"/><circle cx="28" cy="14" r="2.4"/><circle cx="33" cy="24" r="3"/><circle cx="20" cy="28" r="2"/><path d="M8 40h32"/></svg></div><h3>Biochar &amp; carbon-negative tech</h3><p>Pathways for converting surplus biomass into biochar, putting carbon back into the soil it came from.</p></div>
+        <div class="path" data-reveal data-reveal-delay="2"><div class="ico"><svg viewBox="0 0 48 48"><circle cx="17" cy="16" r="5"/><path d="M8 38v-5a9 9 0 0 1 18 0v5"/><circle cx="33" cy="18" r="4"/><path d="M27 38v-4a7 7 0 0 1 14 0v4"/></svg></div><h3>Rural capacity building</h3><p>Technical training in modern agronomy and bio-energy operations for farmers and rural youth.</p></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="bento" data-reveal>
-        <div class="b-card lead">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><path d="M24 6c4 6-4 9-4 15a8 8 0 1 0 16 0c0-4-3-6-3-10 1 4-2 5-2 8a4 4 0 1 1-8 0c0-5 5-7 1-13Z"/></svg></div>
-          <div class="b-title">Compressed Biogas (CBG) Production</div>
-          <div class="b-desc">Multi-year supply frameworks built around the high-methane yield of dedicated Super Napier acreage, sized for commercial-scale CBG facilities.</div>
-          <span class="b-tag">Primary Pathway</span>
+  <section class="section" id="why-napier">
+    <div class="wrap">
+      <div class="split">
+        <div class="napier-copy">
+          <div class="s-head" data-reveal style="margin-bottom:var(--sp-3)">
+            <p class="eyebrow">The crop behind the model</p>
+            <h2>Why Super Napier, specifically</h2>
+          </div>
+          <p class="lede" data-reveal>Most biomass feedstocks are someone else's leftover: crop residue tied to a single harvest window, or waste with an unpredictable mix. Super Napier is grown on purpose, for this purpose.</p>
+          <p class="lede" data-reveal>It's a perennial. Once established, it regrows after every cut for several years without replanting, and its lignocellulosic composition breaks down efficiently in anaerobic digestion.</p>
+          <div class="facts">
+            <div class="fact" data-reveal><span class="fn">01</span><h3>Perennial, not seasonal</h3><p>Regrows after each cut for several years.</p></div>
+            <div class="fact" data-reveal data-reveal-delay="1"><span class="fn">02</span><h3>Continuous cutting cycles</h3><p>New growth ready roughly every 50–75 days.</p></div>
+            <div class="fact" data-reveal data-reveal-delay="2"><span class="fn">03</span><h3>Built for marginal land</h3><p>Low fertilizer and water needs suit degraded soils.</p></div>
+            <div class="fact" data-reveal data-reveal-delay="3"><span class="fn">04</span><h3>Digester-ready</h3><p>High cellulose content for CBG and gasification.</p></div>
+          </div>
         </div>
-
-        <div class="b-card">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><path d="M10 10h28l-9 16v12h-10V26L10 10Z"/></svg></div>
-          <div class="b-title">Biomass Aggregation</div>
-          <div class="b-desc">Centralized collection and grading of biomass from our own plantations and partner land, structured for predictable, long-term off-take.</div>
-        </div>
-
-        <div class="b-card">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><path d="M16 40V18h16v22M20 18v-8h8v8M24 6v4M24 22h0M24 28h0M24 34h0"/></svg></div>
-          <div class="b-title">Biomass Gasification</div>
-          <div class="b-desc">Feedstock supply lines for gasification projects that convert harvested biomass into syngas and power.</div>
-        </div>
-
-        <div class="b-card">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><circle cx="16" cy="18" r="3"/><circle cx="28" cy="14" r="2.4"/><circle cx="33" cy="24" r="3"/><circle cx="20" cy="28" r="2"/><circle cx="14" cy="30" r="1.6"/><path d="M8 40h32"/></svg></div>
-          <div class="b-title">Biochar &amp; Carbon-Negative Tech</div>
-          <div class="b-desc">Pathways for converting surplus biomass into biochar, putting carbon back into the soil it came from.</div>
-        </div>
-
-        <div class="b-card">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><circle cx="17" cy="16" r="5"/><path d="M8 38v-5a9 9 0 0 1 18 0v5"/><circle cx="33" cy="18" r="4"/><path d="M27 38v-4a7 7 0 0 1 14 0v4"/></svg></div>
-          <div class="b-title">Rural Capacity Building</div>
-          <div class="b-desc">Technical training in modern agronomy and bio-energy operations for farmers and rural youth across Kasganj and Etah.</div>
-        </div>
-
-        <div class="b-card">
-          <div class="b-icon"><svg viewBox="0 0 48 48"><path d="M14 16a14 14 0 0 1 22-3l4 4M34 32a14 14 0 0 1-22 3l-4-4"/><path d="M34 9v8h-8M14 39v-8h8"/></svg></div>
-          <div class="b-title">Circular Economy Applications</div>
-          <div class="b-desc">New, emerging markets for Super Napier biomass as renewable-energy and circular-economy demand matures.</div>
+        <div class="photo reveal-img" data-reveal-img>
+          <img src="images/scenes/harvest-logistics.jpg" alt="Napier grass being harvested and loaded for daily supply" loading="lazy" onerror="this.style.display='none'" data-parallax-img="0.1">
+          <span class="tag">Daily harvest and logistics</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== PROOF + CHART ===================== -->
-  <section class="section" id="proof">
-    <div class="wrap frame">
-      <div class="s-head" data-reveal>
-        <p class="eyebrow">Proof Of Operation</p>
-        <h2>Already Running, Before The Plant Is Built</h2>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof-copy" data-reveal>
-          <p>Today, GVD harvests and transports 8 to 10 tonnes of fresh green biomass every day to Gaushalas across Kasganj and Etah. It's a smaller market than bio-energy, but a live one — and it forces us to solve the same problems a CBG or gasification offtaker will demand: continuous cutting cycles, mechanized harvesting, and logistics that turn up on schedule, every day.</p>
-
-          <div class="stat-row">
-            <div class="stat">
-              <div class="num">8–10<span class="unit">tonnes / day</span></div>
-              <div class="label">Biomass delivered</div>
-            </div>
-            <div class="stat">
-              <div class="num"><span data-count-to="100">0</span><span class="unit">acres</span></div>
-              <div class="label">Under cultivation</div>
-            </div>
-            <div class="stat">
-              <div class="num"><span data-count-to="2">0</span></div>
-              <div class="label">Districts served — Kasganj &amp; Etah</div>
-            </div>
-            <div class="stat">
-              <div class="num">2024</div>
-              <div class="label">Year founded</div>
-            </div>
-          </div>
+  <section class="section tight" id="vision">
+    <div class="wrap">
+      <div class="vision-wrap">
+        <div class="s-head" data-reveal>
+          <p class="eyebrow">Vision &amp; Initiatives</p>
+          <h2>Beyond feedstock: where GreenVolt is headed</h2>
         </div>
-
-        <div class="panel" data-reveal data-reveal-delay="2" id="chartPanel">
-          <div class="panel-head">
-            <span class="p-title">Operational Scale</span>
-            <span class="p-meta">Patiyali, Kasganj — UP</span>
-          </div>
-
-          <div class="chart" id="chartLand">
-            <div class="chart-label"><span>Land Under Super Napier Cultivation</span><span>100 acres</span></div>
-            <div class="chart-track">
-              <div class="chart-grid"><span></span><span></span><span></span></div>
-              <div class="chart-bar" style="--target:83.3%"></div>
-            </div>
-            <div class="chart-ticks"><span>0</span><span>40</span><span>80</span><span>120 acres</span></div>
-            <div class="chart-readout">Scaled up from reclaimed, high-alkalinity land first cultivated in 2025.</div>
-          </div>
-
-          <div class="chart" id="chartThroughput">
-            <div class="chart-label"><span>Daily Biomass Throughput</span><span>8–10 t / day</span></div>
-            <div class="chart-track">
-              <div class="chart-grid"><span></span><span></span><span></span></div>
-              <div class="chart-bar band" style="--start:53.3%; --target:13.3%"></div>
-            </div>
-            <div class="chart-ticks"><span>0</span><span>5</span><span>10</span><span>15 tonnes</span></div>
-            <div class="chart-readout">Fresh green biomass harvested and transported to Gaushalas across Kasganj &amp; Etah, daily.</div>
-          </div>
+        <div class="teaser-grid">
+          <a class="teaser" href="about.html#gobardhan" data-reveal><span class="v-letter">A</span><h3>Empowering the Circular Economy: Alignment with the GOBARdhan Initiative</h3><span class="more">Read more &rarr;</span></a>
+          <a class="teaser" href="about.html#carbon" data-reveal data-reveal-delay="1"><span class="v-letter">B</span><h3>Carbon Negative Operations &amp; Carbon Credits</h3><span class="more">Read more &rarr;</span></a>
+          <a class="teaser" href="about.html#hydrogen" data-reveal data-reveal-delay="2"><span class="v-letter">C</span><h3>Pioneering the Next Frontier: Green Hydrogen &amp; Microalgae Bio-Crude</h3><span class="more">Read more &rarr;</span></a>
+          <a class="teaser" href="about.html#partners" data-reveal data-reveal-delay="1"><span class="v-letter">D</span><h3>Strategic Partnerships &amp; Global Recognition</h3><span class="more">Read more &rarr;</span></a>
+          <a class="teaser" href="about.html#biochar" data-reveal data-reveal-delay="2"><span class="v-letter">E</span><h3>Carbon Sequestration via Biochar</h3><span class="more">Read more &rarr;</span></a>
+          <a class="teaser go" href="about.html" data-reveal data-reveal-delay="3"><h3>Explore the full vision</h3><span class="btn btn-lime">About GreenVolt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WHY SUPER NAPIER (EDUCATIVE) ===================== -->
-  <section class="section tight" id="why-napier" style="background:#E4E7D8;">
-    <div class="wrap frame">
-      <div class="s-head" data-reveal>
-        <p class="eyebrow">The Crop Behind The Model</p>
-        <h2>Why Super Napier, Specifically</h2>
-        <p class="s-sub">Bio-energy projects live or die on feedstock reliability. The crop matters as much as the conversion technology.</p>
-      </div>
-
-      <div class="napier-grid">
-        <div class="napier-copy" data-reveal>
-          <p>Most biomass feedstocks are someone else's leftover: crop residue tied to a single harvest window, municipal waste with an unpredictable mix, food waste that varies with what a city ate that week. Super Napier is grown on purpose, for this purpose.</p>
-          <p>It's a perennial. Once established, it regrows after every cut for several years without replanting, and its lignocellulosic composition breaks down efficiently in anaerobic digestion — which is what makes it suited to CBG and gasification pathways, not just fodder.</p>
-
-          <div class="fact-grid">
-            <div class="fact"><span class="fact-num">01</span><h3>Perennial, Not Seasonal</h3><p>Regrows after each cut for several years before replanting is needed.</p></div>
-            <div class="fact"><span class="fact-num">02</span><h3>Continuous Cutting Cycles</h3><p>New growth ready roughly every 50–75 days, smoothing out supply.</p></div>
-            <div class="fact"><span class="fact-num">03</span><h3>Built For Marginal Land</h3><p>Low fertilizer and water needs suit degraded, alkaline soils.</p></div>
-            <div class="fact"><span class="fact-num">04</span><h3>Digester-Ready Composition</h3><p>High cellulose content breaks down efficiently for CBG and gasification.</p></div>
-          </div>
-        </div>
-
-        <div class="napier-visual" data-reveal data-reveal-delay="2">
-          <svg viewBox="0 0 400 400" aria-hidden="true">
-            <circle class="loop-track" cx="200" cy="200" r="150"/>
-            <g class="chevron" transform="translate(306,94) rotate(135)"><path d="M-6,-6 L6,0 L-6,6"/></g>
-            <g class="chevron" transform="translate(306,306) rotate(225)"><path d="M-6,-6 L6,0 L-6,6"/></g>
-            <g class="chevron" transform="translate(94,306) rotate(315)"><path d="M-6,-6 L6,0 L-6,6"/></g>
-            <g class="chevron" transform="translate(94,94) rotate(45)"><path d="M-6,-6 L6,0 L-6,6"/></g>
-
-            <rect class="node-a" x="186" y="36" width="28" height="28"/>
-            <text class="node-label" x="200" y="26" text-anchor="middle">Plant</text>
-
-            <rect class="node-b" x="336" y="186" width="28" height="28"/>
-            <text class="node-label" x="376" y="204" text-anchor="start">Grow</text>
-
-            <rect class="node-a" x="186" y="336" width="28" height="28"/>
-            <text class="node-label" x="200" y="386" text-anchor="middle">Harvest</text>
-
-            <rect class="node-b" x="36" y="186" width="28" height="28"/>
-            <text class="node-label" x="24" y="204" text-anchor="end">Regrow</text>
-          </svg>
-          <p class="visual-caption">One planting. Years of continuous harvest.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FOUNDERS ===================== -->
   <section class="section tight" id="founders">
-    <div class="wrap frame">
+    <div class="wrap">
       <div class="s-head" data-reveal>
         <p class="eyebrow">Leadership</p>
-        <h2>Two Founders, One Supply Chain</h2>
+        <h2>Two founders, one supply chain</h2>
         <p class="s-sub">GVD pairs energy-sector fluency with on-the-ground execution.</p>
       </div>
-
-      <div class="founders" data-reveal>
-        <div class="f-card">
-          <div class="f-photo gr">
-            <img src="images/founders/vaibhav-gautam.jpg" alt="Vaibhav Gautam, Co-Founder of GreenVolt Dynamics" onerror="this.style.display='none'">
-          
-          </div>
-          <div class="f-name">Vaibhav Gautam</div>
-          <div class="f-role">Co-Founder</div>
-          <p class="f-bio">Over five years inside India's biofuels and green energy sector, spent finding commercially viable paths toward sustainable fuels within the wider renewable energy ecosystem. Vaibhav sets GVD's read on where bio-energy demand is heading, and how feedstock supply needs to be built to meet it.</p>
+      <div class="founders">
+        <div class="f-card" data-reveal>
+          <div class="f-photo"><img src="images/founders/vaibhav-gautam.jpg" alt="Vaibhav Gautam, Co-Founder of GreenVolt Dynamics" onerror="this.style.display='none'"></div>
+          <div><div class="f-name">Vaibhav Gautam</div><div class="f-role">Co-Founder</div>
+          <p class="f-bio">Over five years inside India's biofuels and green energy sector, spent finding commercially viable paths toward sustainable fuels within the wider renewable energy ecosystem. Vaibhav sets GVD's read on where bio-energy demand is heading, and how feedstock supply needs to be built to meet it.</p></div>
         </div>
-        <div class="f-card">
-          <div class="f-photo ik">
-            <img src="images/founders/akshat-ramendra.jpg" alt="Akshat Ramendra, Co-Founder of GreenVolt Dynamics" onerror="this.style.display='none'">
-            
-          </div>
-          <div class="f-name">Akshat Ramendra</div>
-          <div class="f-role">Co-Founder</div>
-          <p class="f-bio">An entrepreneurial background in digital media, now applied to asset-heavy, climate-resilient value chains on the ground in Kasganj. Akshat works from one conviction: aggressive commercial scaling and real ecological stewardship aren't in tension. Done properly, they're the same job.</p>
+        <div class="f-card" data-reveal data-reveal-delay="1">
+          <div class="f-photo" style="background:var(--green-deep)"><img src="images/founders/akshat-ramendra.jpg" alt="Akshat Ramendra, Co-Founder of GreenVolt Dynamics" onerror="this.style.display='none'"></div>
+          <div><div class="f-name">Akshat Ramendra</div><div class="f-role">Co-Founder</div>
+          <p class="f-bio">An entrepreneurial background in digital media, now applied to asset-heavy, climate-resilient value chains on the ground in Kasganj. Akshat works from one conviction: aggressive commercial scaling and real ecological stewardship aren't in tension. Done properly, they're the same job.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== SUSTAINABILITY ===================== -->
-  <section class="section" id="sustainability" style="background:#E4E7D8;">
-    <div class="wrap frame">
+  <section class="section tight" id="sustainability" style="background:var(--bg-2)">
+    <div class="wrap">
       <div class="s-head" data-reveal>
-        <p class="eyebrow">Built To Last</p>
-        <h2>Growth That Doesn't Cost The Land</h2>
-        <p class="s-sub">Scaling a feedstock business on degraded land only works if the land keeps giving. Everything here is designed around that constraint, not against it.</p>
+        <p class="eyebrow">Built to last</p>
+        <h2>Growth that doesn't cost the land</h2>
       </div>
-
-      <div class="sustain-grid">
-        <div class="pillars" data-reveal>
-          <div class="pillar"><h3>Reclaimed Land Only</h3><p>We work exclusively on degraded, non-arable land, avoiding any food-versus-fuel conflict by design, not as an offset.</p></div>
-          <div class="pillar"><h3>Carbon-Negative Pathways</h3><p>Biochar routes convert surplus biomass into a soil amendment that locks carbon back into the ground it came from.</p></div>
-          <div class="pillar"><h3>Carbon Drawdown While Growing</h3><p>Super Napier pulls additional carbon out of the atmosphere as it grows, before any of it reaches a digester.</p></div>
-          <div class="pillar"><h3>Rural Livelihoods</h3><p>Technical training and steady, multi-year off-take agreements bring durable income to farmers and rural youth across Kasganj and Etah.</p></div>
-        </div>
-
-        <div class="panel" data-reveal data-reveal-delay="2">
-          <div class="panel-head">
-            <span class="p-title">The Closed Loop</span>
-            <span class="p-meta">Land → Crop → Energy → Soil</span>
-          </div>
-          <svg viewBox="0 0 400 200" class="loop-diagram" aria-hidden="true">
-            <line class="loop-track" x1="50" y1="50" x2="350" y2="50"/>
-            <rect class="node-a" x="38" y="38" width="24" height="24"/>
-            <rect class="node-b" x="138" y="38" width="24" height="24"/>
-            <rect class="node-a" x="238" y="38" width="24" height="24"/>
-            <rect class="node-b" x="338" y="38" width="24" height="24"/>
-            <text class="node-label" x="50" y="84" text-anchor="middle">Land</text>
-            <text class="node-label" x="150" y="84" text-anchor="middle">Super Napier</text>
-            <text class="node-label" x="250" y="84" text-anchor="middle">Biomass</text>
-            <text class="node-label" x="350" y="84" text-anchor="middle">CBG / Biochar</text>
-            <path class="return-arrow" d="M350,62 C 380,150 20,150 50,62"/>
-            <g class="chevron" transform="translate(50,62) rotate(160)"><path d="M-6,-6 L6,0 L-6,6"/></g>
-            <text class="loop-caption" x="200" y="178" text-anchor="middle">Carbon Returns To Soil</text>
-          </svg>
-          <p class="chart-readout">Surplus biomass converts to biochar, which returns carbon to the same soil it was grown on.</p>
-        </div>
+      <div class="pillars">
+        <div class="pillar" data-reveal><h3>Reclaimed land only</h3><p>We work exclusively on degraded, non-arable land, avoiding any food-versus-fuel conflict by design.</p></div>
+        <div class="pillar" data-reveal data-reveal-delay="1"><h3>Carbon-negative pathways</h3><p>Biochar routes convert surplus biomass into a soil amendment that locks carbon back into the ground.</p></div>
+        <div class="pillar" data-reveal data-reveal-delay="2"><h3>Carbon drawdown while growing</h3><p>Super Napier pulls additional carbon out of the atmosphere as it grows, before any of it reaches a digester.</p></div>
+        <div class="pillar" data-reveal data-reveal-delay="3"><h3>Rural livelihoods</h3><p>Technical training and steady, multi-year off-take agreements bring durable income to farmers and rural youth.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== CONTACT / FOOTER ===================== -->
-  <section class="section contact" id="contact">
-    <div class="wrap frame">
-      <div class="contact-grid">
-        <div data-reveal>
-          <p class="eyebrow">Get In Touch</p>
-          <h2>Let's Talk Feedstock</h2>
-          <p class="s-sub" style="margin-top:var(--sp-3);">For CBG, gasification, biochar or biomass-supply partnerships, reach the GVD team directly.</p>
+  <section class="section tight" id="contact">
+    <div class="wrap">
+      <div class="cta-band" data-reveal>
+        <div class="cta-bg" data-parallax-bg="0.1"></div>
+        <div>
+          <h2>Let's talk feedstock</h2>
+          <p>Need Napier or any CBG-grade biomass? Place an order online, or reach the GVD team directly.</p>
+          <div class="btns"><a href="order.html" class="btn btn-lime">Place an order <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="mailto:contact@gvdynamics.com" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.5);background:transparent">Email us</a></div>
         </div>
-
-        <div data-reveal data-reveal-delay="2">
-          <div class="c-list">
-            <div class="c-row">
-              <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-              <div><div class="c-label">Office</div><div class="c-value">213, 2nd Floor, Ganga Shopping Complex, Sector-29, Noida, Uttar Pradesh 201301</div></div>
-            </div>
-            <div class="c-row">
-              <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
-              <div><div class="c-label">Phone</div><div class="c-value"><a href="tel:+919980591862">+91 99805 91862</a> &nbsp;·&nbsp; <a href="tel:+919999931053">+91 99999 31053</a></div></div>
-            </div>
-            <div class="c-row">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3Z"/><path d="M3 7l9 6 9-6"/></svg>
-              <div><div class="c-label">Email</div><div class="c-value"><a href="mailto:contact@gvdynamics.com">contact@gvdynamics.com</a></div></div>
-            </div>
-            <div class="c-row">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 4 5.7 4 9s-1.4 6.4-4 9c-2.6-2.6-4-5.7-4-9s1.4-6.4 4-9Z"/></svg>
-              <div><div class="c-label">Website</div><div class="c-value"><a href="https://www.gvdynamics.com">www.gvdynamics.com</a></div></div>
-            </div>
-          </div>
+        <div class="c-card">
+          <div class="c-row"><div class="c-label">Office</div><div class="c-value">213, 2nd Floor, Ganga Shopping Complex, Sector-29, Noida, Uttar Pradesh 201301</div></div>
+          <div class="c-row"><div class="c-label">Phone</div><div class="c-value"><a href="tel:+919980591862">+91 99805 91862</a> &nbsp;·&nbsp; <a href="tel:+919999931053">+91 99999 31053</a></div></div>
+          <div class="c-row"><div class="c-label">Email</div><div class="c-value"><a href="mailto:contact@gvdynamics.com">contact@gvdynamics.com</a></div></div>
+          <div class="c-row"><div class="c-label">Website</div><div class="c-value"><a href="https://www.gvdynamics.com">www.gvdynamics.com</a></div></div>
         </div>
-      </div>
-
-      <div class="foot-bar">
-        <span>© 2026 GreenVolt Dynamics Pvt. Ltd.</span>
-        <span>GST 09AALCG3921E1ZN</span>
       </div>
     </div>
   </section>
 
 </main>
 
-<script>
-// header background on scroll
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive:true });
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-bar"><span>© 2026 GreenVolt Dynamics Pvt. Ltd.</span><span>GST 09AALCG3921E1ZN</span></div>
+      <details class="photo-credits">
+        <summary>Photo credits</summary>
+        <ul>
+      <li>Super Napier Grass: <a href="https://commons.wikimedia.org/wiki/File:Harvesting_Napier.jpg" rel="noopener">Harvesting Napier</a> by Kamweti wa Mutu, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</li>
+      <li>Paddy Straw &amp; Rice Husk: <a href="https://commons.wikimedia.org/wiki/File:Paddy_straw_near_Kothapeta,_Eluru.jpg" rel="noopener">Paddy straw near Kothapeta, Eluru</a> by iMahesh, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</li>
+      <li>Paddy Straw &amp; Rice Husk: <a href="https://commons.wikimedia.org/wiki/File:Rice_hulls_(5142989621).jpg" rel="noopener">Rice hulls (5142989621)</a> by Nick Hubbard, <a href="https://creativecommons.org/licenses/by/2.0" rel="noopener">CC BY 2.0</a>, via Wikimedia Commons</li>
+      <li>Wheat Straw: <a href="https://commons.wikimedia.org/wiki/File:Wheat_field_straw_bales,_near_Hitchin_-_geograph.org.uk_-_4585911.jpg" rel="noopener">Wheat field straw bales, near Hitchin - geograph.org.uk - 4585911</a> by Jim Osley, <a href="https://creativecommons.org/licenses/by-sa/2.0" rel="noopener">CC BY-SA 2.0</a>, via Wikimedia Commons</li>
+      <li>Mustard Straw / Stalks: <a href="https://commons.wikimedia.org/wiki/File:Harvesting_mustard.jpg" rel="noopener">Harvesting mustard</a> by Jaishree.lunkaransar, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</li>
+      <li>Corn Residue: <a href="https://commons.wikimedia.org/wiki/File:Cornfield_after_harvest_in_rural_area_with_dried_corn_stalks_and_soil_visible.jpg" rel="noopener">Cornfield after harvest in rural area with dried corn stalks and soil visible</a> by Shixart1985, <a href="https://creativecommons.org/licenses/by/2.0" rel="noopener">CC BY 2.0</a>, via Wikimedia Commons</li>
+      <li>Sugarcane Bagasse &amp; Press Mud: <a href="https://commons.wikimedia.org/wiki/File:Bagasse_in_Hainan_-_01.jpg" rel="noopener">Bagasse in Hainan - 01</a> by Anna Frodesiak, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="noopener">CC0</a>, via Wikimedia Commons</li>
+      <li>Cotton Stalks: <a href="https://commons.wikimedia.org/wiki/File:Woman_picking_cotton_in_Raichur,_Karnataka.jpg" rel="noopener">Woman picking cotton in Raichur, Karnataka</a> by Nanditha Gogate, WELL Labs, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</li>
+      <li>Soybean Straw: <a href="https://commons.wikimedia.org/wiki/File:Soybean_Harvest_(10060074434).jpg" rel="noopener">Soybean Harvest (10060074434)</a> by United Soybean Board, <a href="https://creativecommons.org/licenses/by/2.0" rel="noopener">CC BY 2.0</a>, via Wikimedia Commons</li>
+      <li>Groundnut Shells: <a href="https://commons.wikimedia.org/wiki/File:Shells_groundnut.jpg" rel="noopener">Shells groundnut</a> by Munkaila Sulemana, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</li>
+      <li>Castor Seed Stalks: <a href="https://commons.wikimedia.org/wiki/File:A_castor_field.jpg" rel="noopener">A castor field</a> by Deccantrap, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="noopener">CC0</a>, via Wikimedia Commons</li>
+        </ul>
+      </details>
+  </div>
+</footer>
 
-// generic reveal-on-scroll
-const revealEls = document.querySelectorAll('[data-reveal]');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold:0.15 });
-revealEls.forEach(el => revealObserver.observe(el));
+<script src="js/main.js?v=4"></script>
 
-// count-up stats
-function animateCount(el){
-  const target = parseFloat(el.dataset.countTo);
-  const decimals = parseInt(el.dataset.countDecimals || "0", 10);
-  const duration = 1100;
-  const start = performance.now();
-  function tick(now){
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const val = target * eased;
-    el.textContent = decimals > 0 ? val.toFixed(decimals) : Math.round(val);
-    if (p < 1) requestAnimationFrame(tick);
-    else el.textContent = decimals > 0 ? target.toFixed(decimals) : target;
-  }
-  requestAnimationFrame(tick);
-}
-const countEls = document.querySelectorAll('[data-count-to]');
-const countObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      animateCount(entry.target);
-      countObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold:0.4 });
-countEls.forEach(el => countObserver.observe(el));
-
-// chart panel — trigger bar fills once
-const chartPanel = document.getElementById('chartPanel');
-const chartObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      document.getElementById('chartLand').classList.add('is-live');
-      document.getElementById('chartThroughput').classList.add('is-live');
-      chartObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold:0.3 });
-if (chartPanel) chartObserver.observe(chartPanel);
-</script>
 </body>
 </html>

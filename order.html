@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place a Biomass Order | GreenVolt Dynamics</title>
+<meta name="description" content="Select the biomass you need, including Super Napier, paddy straw, wheat straw and bagasse, and send your order request to GreenVolt Dynamics online.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230F3D27'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='900' fill='%23C5E86C' text-anchor='middle'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=5">
+<style>
+.order-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#E9EFE8,var(--bg)); padding:136px 0 var(--sp-4); text-align:center; }
+.order-hero .wrap{ position:relative; z-index:1; }
+.order-hero h1{ font-size:clamp(36px,5.4vw,64px); margin-bottom:var(--sp-2); }
+.order-hero p:not(.eyebrow){ max-width:540px; margin:0 auto; color:var(--ink-soft); font-size:17px; }
+
+.order-wrap{ display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:var(--sp-5); align-items:start; padding:var(--sp-4) 0 var(--sp-7); }
+
+/* steps */
+.o-step{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:clamp(20px,3vw,36px); margin-bottom:20px; }
+.o-head{ display:flex; align-items:center; gap:14px; margin-bottom:var(--sp-3); }
+.o-num{ width:36px; height:36px; border-radius:50%; background:var(--green-deep); color:var(--lime); display:grid; place-items:center; font-weight:800; font-size:14px; flex-shrink:0; }
+.o-head h2{ font-size:22px; letter-spacing:-.01em; }
+.o-head p{ font-size:14px; color:var(--ink-soft); margin-top:2px; }
+
+/* biomass picker */
+.picker{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; align-items:start; }
+.pick{ position:relative; border:1.5px solid var(--line); border-radius:var(--r-md); background:var(--bg); overflow:hidden; transition:border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.pick:hover{ border-color:rgba(14,27,20,.3); }
+.pick.on{ border-color:var(--green); background:#F1F8EC; box-shadow:0 0 0 3px rgba(30,107,67,.14); }
+.pick label{ display:grid; grid-template-columns:72px 1fr 26px; gap:14px; align-items:center; padding:10px 14px 10px 10px; cursor:pointer; }
+.pick .thumb{ width:72px; height:72px; border-radius:14px; overflow:hidden; background:var(--green-deep); position:relative; }
+.pick .thumb img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.pick .p-name{ font-weight:700; font-size:15px; line-height:1.25; }
+.pick .p-name small{ display:block; font-weight:500; font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+.pick .tick{ width:24px; height:24px; border-radius:50%; border:1.5px solid rgba(14,27,20,.25); display:grid; place-items:center; background:#fff; transition:all .2s ease; }
+.pick .tick svg{ width:13px; height:13px; stroke:#fff; stroke-width:3; fill:none; opacity:0; transform:scale(.5); transition:all .2s ease; }
+.pick.on .tick{ background:var(--green); border-color:var(--green); }
+.pick.on .tick svg{ opacity:1; transform:none; }
+.pick input[type=checkbox]{ position:absolute; opacity:0; pointer-events:none; }
+.pick:has(input:focus-visible){ outline:2px solid var(--green); outline-offset:2px; }
+.qty{ display:none; align-items:center; gap:10px; padding:0 14px 14px 10px; }
+.pick.on .qty{ display:flex; }
+.qty .q-label{ font-size:12.5px; font-weight:600; color:var(--ink-soft); margin-left:86px; }
+.qty input{ width:92px; margin-left:auto; padding:9px 10px; font:600 15px var(--mono); border:1.5px solid var(--line); border-radius:10px; background:#fff; }
+.qty input:focus{ outline:none; border-color:var(--green); }
+.qty .unit{ font-size:12.5px; font-weight:600; color:var(--ink-soft); }
+.hint{ font-size:13.5px; color:var(--ink-soft); margin-top:var(--sp-2); }
+
+/* fields */
+.row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.field{ display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
+.field:last-child{ margin-bottom:0; }
+.row .field{ margin-bottom:16px; }
+.field label{ font-size:13px; font-weight:700; }
+.field label .req{ color:var(--ochre); }
+.field input,.field select,.field textarea{
+  font:500 15.5px var(--body); color:var(--ink); background:var(--bg); width:100%;
+  border:1.5px solid var(--line); border-radius:var(--r-sm); padding:13px 14px; height:50px;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.field textarea{ height:auto; min-height:110px; resize:vertical; }
+.field select{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%2355645B' stroke-width='2' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; }
+.field input:focus,.field select:focus,.field textarea:focus{ outline:none; border-color:var(--green); background:#fff; box-shadow:0 0 0 3px rgba(30,107,67,.14); }
+.field input:user-invalid,.field select:user-invalid{ border-color:var(--ochre); }
+.honey{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+.submit-row{ display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; margin-top:var(--sp-1); }
+.btn[disabled]{ opacity:.55; cursor:progress; transform:none; }
+.msg{ padding:var(--sp-3); border-radius:var(--r-sm); border:1px solid var(--line); margin-top:var(--sp-3); display:none; font-size:15.5px; }
+.msg.show{ display:block; }
+.msg.ok{ border-color:var(--green); background:#E2F0DF; }
+.msg.err{ border-color:var(--ochre); background:#F7E8D3; }
+.msg a{ text-decoration:underline; }
+
+/* aside */
+.aside{ position:sticky; top:96px; display:flex; flex-direction:column; gap:16px; }
+.sum{ background:var(--green-deep); color:#fff; border-radius:var(--r-lg); padding:var(--sp-4) var(--sp-3) var(--sp-3); position:relative; overflow:hidden; }
+.sum::before{ content:""; position:absolute; right:-70px; top:-70px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(197,232,108,.28),transparent 65%); }
+.sum h2{ font-size:20px; color:#fff; margin-bottom:var(--sp-2); position:relative; }
+.sum-empty{ font-size:14.5px; color:#B9CFB5; padding:10px 0 6px; position:relative; }
+.sum-line{ display:flex; justify-content:space-between; gap:12px; font-size:14.5px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.14); position:relative; }
+.sum-line b{ font-family:var(--mono); font-weight:600; color:var(--lime); white-space:nowrap; }
+.sum-total{ display:flex; justify-content:space-between; align-items:baseline; padding-top:var(--sp-2); position:relative; }
+.sum-total span{ font-size:13px; color:#B9CFB5; }
+.sum-total b{ font-size:26px; font-weight:800; letter-spacing:-.02em; }
+.sum-total b small{ font-size:13px; font-weight:600; color:var(--lime); margin-left:4px; }
+.help{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--sp-3); }
+.help h3{ font-size:17px; margin-bottom:6px; }
+.help p{ font-size:14.5px; color:var(--ink-soft); }
+.help a{ font-weight:700; text-decoration:underline; text-decoration-color:var(--lime); text-underline-offset:3px; }
+.help ul{ list-style:none; margin:var(--sp-2) 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.help li{ font-size:14px; display:flex; gap:10px; align-items:center; }
+.help li::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; }
+
+@media (max-width:980px){ .order-wrap{ grid-template-columns:1fr; } .aside{ position:static; } }
+@media (max-width:620px){ .picker{ grid-template-columns:1fr; } .row{ grid-template-columns:1fr; gap:0; } }
+</style>
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <a href="index.html" class="brand"><span class="brand-mark">GV</span><span class="brand-name"><b>GreenVolt</b> Dynamics</span></a>
+  <nav class="pill-nav" id="pillNav" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="index.html#portfolio">Biomass</a>
+    <a href="index.html#supply">Supply</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <div class="hdr-right"><button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="pillNav"><span></span><span></span><span></span></button>
+    <a href="tel:+919980591862" class="hdr-link">+91 99805 91862</a><a href="index.html" class="hdr-cta">&larr; Back to site</a></div>
+</header>
+
+<main>
+  <section class="order-hero">
+    <div class="guides" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <p class="eyebrow">Online order</p>
+      <h1>Place a biomass order</h1>
+      <p>Choose the biomass you need, tell us how much and where it should go. Our team receives your request by email and confirms availability, pricing and delivery.</p>
+    </div>
+  </section>
+
+  <div class="wrap order-wrap">
+    <form id="orderForm" novalidate>
+      <input type="checkbox" name="botcheck" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <section class="o-step">
+        <div class="o-head"><span class="o-num">1</span><div><h2>Select biomass</h2><p>Tick what you need and enter the quantity in tonnes.</p></div></div>
+        <div class="picker" id="picker"></div>
+        <p class="hint">Not sure of the quantity? Enter an estimate and mention it in the notes.</p>
+      </section>
+
+      <section class="o-step">
+        <div class="o-head"><span class="o-num">2</span><div><h2>Delivery</h2><p>Where and when it should arrive.</p></div></div>
+        <div class="row">
+          <div class="field">
+            <label for="district">District <span class="req">*</span></label>
+            <select id="district" name="district" required>
+              <option value="">Select district</option>
+              <option>Kasganj</option><option>Etah</option><option>Budaun</option><option>Farrukhabad</option>
+              <option>Hathras</option><option>Aligarh</option><option>Agra</option><option>Other (mention in notes)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Required by</label>
+            <input type="date" id="date" name="required_by">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="freq">Order type</label>
+            <select id="freq" name="order_type">
+              <option>One-time order</option><option>Daily supply</option><option>Weekly supply</option><option>Monthly supply</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="address">Delivery location / plant address <span class="req">*</span></label>
+            <input type="text" id="address" name="delivery_address" required autocomplete="street-address">
+          </div>
+        </div>
+      </section>
+
+      <section class="o-step">
+        <div class="o-head"><span class="o-num">3</span><div><h2>Your details</h2><p>So our team can confirm the order with you.</p></div></div>
+        <div class="row">
+          <div class="field"><label for="name">Full name <span class="req">*</span></label><input type="text" id="name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="company">Company / Gaushala / Plant</label><input type="text" id="company" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="phone">Phone <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="email">Email <span class="req">*</span></label><input type="email" id="email" name="email" required autocomplete="email"></div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" placeholder="Moisture or size requirements, packaging, anything we should know."></textarea>
+        </div>
+      </section>
+
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Send order request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <span class="hint" style="margin:0">No payment is taken online. We will contact you to confirm.</span>
+      </div>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </form>
+
+    <aside class="aside">
+      <div class="sum">
+        <h2>Your order</h2>
+        <div id="summary"><p class="sum-empty">No biomass selected yet.</p></div>
+        <div class="sum-total" id="sumTotal" hidden><span>Total quantity</span><b id="totalVal">0<small>tonnes</small></b></div>
+      </div>
+      <div class="help">
+        <h3>Prefer to talk?</h3>
+        <p>Call <a href="tel:+919980591862">+91 99805 91862</a> or <a href="tel:+919999931053">+91 99999 31053</a>, or email <a href="mailto:contact@gvdynamics.com">contact@gvdynamics.com</a>.</p>
+        <ul><li>20–25 tonnes of Napier supplied per day</li><li>Delivering across 7 districts in Uttar Pradesh</li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script>
+// Orders are emailed through Web3Forms. Paste your access key below (free at web3forms.com,
+// create it for gvaibhav17@gmail.com). Until a key is set, the form falls back to opening
+// the visitor's email app with the order pre-filled, so it still works.
+const WEB3FORMS_KEY = "fab70978-5fe8-4d78-a744-41277ed568b2";
+const ORDER_EMAIL = "gvaibhav17@gmail.com";
+
+const BIOMASS = [
+  ["super-napier-grass","01","Super Napier Grass",""],
+  ["paddy-straw-rice-husk","02","Paddy Straw & Rice Husk",""],
+  ["wheat-straw","03","Wheat Straw",""],
+  ["mustard-straw","04","Mustard Straw / Stalks","सरसों की तूड़ी"],
+  ["corn-residue","05","Corn Residue","Corn Cobs, Husks, and Stover"],
+  ["sugarcane-bagasse-press-mud","06","Sugarcane Bagasse & Press Mud",""],
+  ["cotton-stalks","07","Cotton Stalks",""],
+  ["soybean-straw","08","Soybean Straw",""],
+  ["groundnut-shells","09","Groundnut Shells",""],
+  ["castor-seed-stalks","10","Castor Seed Stalks",""]
+];
+const form = document.getElementById('orderForm');
+const picker = document.getElementById('picker');
+const summary = document.getElementById('summary');
+const sumTotal = document.getElementById('sumTotal');
+const totalVal = document.getElementById('totalVal');
+const msg = document.getElementById('msg');
+const btn = document.getElementById('submitBtn');
+const BTN_HTML = btn.innerHTML;
+
+BIOMASS.forEach(([slug,n,name,sub]) => {
+  const d = document.createElement('div'); d.className = 'pick'; d.dataset.slug = slug;
+  d.innerHTML = `
+    <label for="c-${slug}">
+      <span class="thumb"><img src="images/biomass/${n}-${slug}.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></span>
+      <span class="p-name"></span>
+      <span class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>
+    </label>
+    <input type="checkbox" id="c-${slug}">
+    <div class="qty"><span class="q-label">Quantity</span><input type="number" min="0.5" step="0.5" id="q-${slug}" placeholder="0" aria-label="Quantity in tonnes for ${name}" disabled><span class="unit">tonnes</span></div>`;
+  const pn = d.querySelector('.p-name'); pn.textContent = name;
+  if (sub){ const s = document.createElement('small'); s.textContent = sub; pn.appendChild(s); }
+  picker.appendChild(d);
+});
+
+function selected(){
+  return BIOMASS.map(([slug,,name]) => {
+    const c = document.getElementById('c-'+slug), q = document.getElementById('q-'+slug);
+    return c.checked ? { slug, name, qty: parseFloat(q.value) } : null;
+  }).filter(Boolean);
+}
+function renderSummary(){
+  const sel = selected();
+  summary.textContent = '';
+  if (!sel.length){
+    const p = document.createElement('p'); p.className = 'sum-empty'; p.textContent = 'No biomass selected yet.';
+    summary.appendChild(p); sumTotal.hidden = true; return;
+  }
+  sel.forEach(i => {
+    const d = document.createElement('div'); d.className = 'sum-line';
+    const a = document.createElement('span'); a.textContent = i.name;
+    const b = document.createElement('b'); b.textContent = i.qty > 0 ? i.qty + ' t' : '0 t';
+    d.append(a,b); summary.appendChild(d);
+  });
+  const t = sel.reduce((n,i) => n + (i.qty > 0 ? i.qty : 0), 0);
+  totalVal.firstChild.nodeValue = String(Math.round(t*10)/10);
+  sumTotal.hidden = false;
+}
+picker.addEventListener('change', e => {
+  if (e.target.type !== 'checkbox') return;
+  const pick = e.target.closest('.pick'), q = pick.querySelector('input[type=number]');
+  pick.classList.toggle('on', e.target.checked);
+  q.disabled = !e.target.checked;
+  if (e.target.checked) q.focus(); else q.value = '';
+  renderSummary();
+});
+picker.addEventListener('input', renderSummary);
+
+const pre = new URLSearchParams(location.search).get('biomass');
+if (pre){ const c = document.getElementById('c-'+pre); if (c){ c.checked = true; c.dispatchEvent(new Event('change',{bubbles:true})); } }
+document.getElementById('date').min = new Date().toISOString().slice(0,10);
+
+function show(kind, html){ msg.className = 'msg show ' + kind; msg.innerHTML = html; msg.scrollIntoView({behavior:'smooth', block:'center'}); }
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const sel = selected();
+  if (!sel.length) return show('err','Please select at least one biomass.');
+  if (sel.some(i => !(i.qty > 0))) return show('err','Please enter a quantity (in tonnes) for each selected biomass.');
+  if (!form.checkValidity()){ form.reportValidity(); return; }
+
+  const fd = new FormData(form);
+  if (fd.get('botcheck')) return;
+  const f = k => (fd.get(k) || '').toString().trim();
+  const total = Math.round(sel.reduce((n,i) => n + i.qty, 0) * 10) / 10;
+  const itemsText = sel.map(i => `- ${i.name}: ${i.qty} tonnes`).join('\n');
+  const message = [
+    'NEW BIOMASS ORDER REQUEST', '',
+    'ORDER', itemsText, `Total: ${total} tonnes`, `Order type: ${f('order_type')}`, `Required by: ${f('required_by') || 'Not specified'}`, '',
+    'DELIVERY', `District: ${f('district')}`, `Location: ${f('delivery_address')}`, '',
+    'CUSTOMER', `Name: ${f('name')}`, `Company: ${f('company') || '-'}`, `Phone: ${f('phone')}`, `Email: ${f('email')}`, '',
+    'NOTES', f('notes') || '-'
+  ].join('\n');
+
+  const mailto = () => 'mailto:' + ORDER_EMAIL + '?subject=' + encodeURIComponent('New biomass order request from ' + f('name')) + '&body=' + encodeURIComponent(message);
+  const reset = () => {
+    form.reset();
+    document.querySelectorAll('.pick').forEach(r => { r.classList.remove('on'); r.querySelector('input[type=number]').disabled = true; });
+    renderSummary();
+  };
+
+  if (!WEB3FORMS_KEY){
+    location.href = mailto();
+    return show('ok','<strong>Your email app should open with the order filled in.</strong> Press send to complete it, or <a href="' + mailto() + '">open it again</a>.');
+  }
+
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try{
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `New biomass order: ${total} t from ${f('name')}`,
+        from_name: 'GreenVolt website order form',
+        name: f('name'), email: f('email'), phone: f('phone'), company: f('company'),
+        district: f('district'), delivery_address: f('delivery_address'), required_by: f('required_by'), order_type: f('order_type'),
+        order_items: itemsText, total_tonnes: String(total), notes: f('notes'),
+        message
+      })
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || !out.success) throw new Error(out.message || 'Request failed');
+    reset();
+    show('ok','<strong>Thank you. Your order request has been sent.</strong> Our team will contact you shortly to confirm availability, pricing and delivery.');
+  }catch(err){
+    show('err','We could not send your request just now. Please <a href="' + mailto() + '">email it to us directly</a> or call +91 99805 91862.');
+  }finally{
+    btn.disabled = false; btn.innerHTML = BTN_HTML;
+  }
+});
+</script>
+<script src="js/main.js?v=5"></script>
+</body>
+</html>
