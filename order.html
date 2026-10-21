@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
 <style>
 .order-hero{ position:relative; overflow:hidden; background:linear-gradient(180deg,#E9EFE8,var(--bg)); padding:136px 0 var(--sp-4); text-align:center; }
 .order-hero .wrap{ position:relative; z-index:1; }
@@ -203,10 +203,13 @@
 </main>
 
 <script>
-// Orders are emailed through Web3Forms. Paste your access key below (free at web3forms.com,
-// create it for gvaibhav17@gmail.com). Until a key is set, the form falls back to opening
-// the visitor's email app with the order pre-filled, so it still works.
-const WEB3FORMS_KEY = "fab70978-5fe8-4d78-a744-41277ed568b2";
+// Orders are emailed through Web3Forms. Each key delivers to ONE inbox (free plan), so the
+// form sends the order once per key. Add a key here to add another recipient.
+// Until at least one key is set, the form falls back to opening the visitor's email app.
+const WEB3FORMS_KEYS = [
+  "fab70978-5fe8-4d78-a744-41277ed568b2",
+  "cb1b50bd-9860-408e-b0c6-2a958ba806fd"
+];
 const ORDER_EMAIL = "gvaibhav17@gmail.com";
 
 const BIOMASS = [
@@ -311,27 +314,30 @@ form.addEventListener('submit', async e => {
     renderSummary();
   };
 
-  if (!WEB3FORMS_KEY){
+  if (!WEB3FORMS_KEYS.length){
     location.href = mailto();
     return show('ok','<strong>Your email app should open with the order filled in.</strong> Press send to complete it, or <a href="' + mailto() + '">open it again</a>.');
   }
 
   btn.disabled = true; btn.textContent = 'Sending…';
   try{
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `New biomass order: ${total} t from ${f('name')}`,
-        from_name: 'GreenVolt website order form',
-        name: f('name'), email: f('email'), phone: f('phone'), company: f('company'),
-        district: f('district'), delivery_address: f('delivery_address'), required_by: f('required_by'), order_type: f('order_type'),
-        order_items: itemsText, total_tonnes: String(total), notes: f('notes'),
-        message
-      })
-    });
-    const out = await res.json().catch(() => ({}));
-    if (!res.ok || !out.success) throw new Error(out.message || 'Request failed');
+    const payload = {
+      subject: `New biomass order: ${total} t from ${f('name')}`,
+      from_name: 'GreenVolt website order form',
+      name: f('name'), email: f('email'), phone: f('phone'), company: f('company'),
+      district: f('district'), delivery_address: f('delivery_address'), required_by: f('required_by'), order_type: f('order_type'),
+      order_items: itemsText, total_tonnes: String(total), notes: f('notes'),
+      message
+    };
+    const results = await Promise.allSettled(WEB3FORMS_KEYS.map(async key => {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify({ access_key: key, ...payload })
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.success) throw new Error(out.message || 'Request failed');
+    }));
+    if (!results.some(r => r.status === 'fulfilled')) throw new Error('All deliveries failed');
     reset();
     show('ok','<strong>Thank you. Your order request has been sent.</strong> Our team will contact you shortly to confirm availability, pricing and delivery.');
   }catch(err){
@@ -341,6 +347,6 @@ form.addEventListener('submit', async e => {
   }
 });
 </script>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>
